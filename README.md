@@ -9,7 +9,10 @@ yarn start
 ```
 
 # Requirement
+
 - ./google_cloud_service_key.json
+  - 구글 클라우드 서버리스 호출을 위한 서비스 키 파일
+
 ```json
 {
   "type": "",
@@ -24,5 +27,4 @@ yarn start
   "client_x509_cert_url": "",
   "universe_domain": ""
 }
-
 ```
