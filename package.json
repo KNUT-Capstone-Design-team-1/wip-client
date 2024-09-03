@@ -4,7 +4,7 @@
   "description": "이게뭐약 클라이언트 테스트 프로그램",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node ./src/app.ts"
   },
   "author": "2mukee",
   "license": "ISC",
@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.4.1",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "wrangler": "^3.72.2"
   }
 }
