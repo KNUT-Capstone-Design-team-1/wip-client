@@ -1,5 +1,6 @@
 import { GoogleAuthInstance } from "./auth";
 import { IClient } from "../client.interface";
+import config from "../../env/config.json";
 
 type TInitInfoResponse = { appVersion: string; resourceDate: string };
 
@@ -11,7 +12,7 @@ export class InitInfoClient
 
   constructor() {
     super();
-    this.serviceUrl = process.env.INIT_INFO_URL as string;
+    this.serviceUrl = config.googleCloud.initInfoURL;
   }
 
   public async request() {

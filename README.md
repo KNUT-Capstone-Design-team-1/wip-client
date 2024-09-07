@@ -10,8 +10,22 @@ yarn start
 
 # Requirement
 
-- ./google_cloud_service_key.json
-  - 구글 클라우드 서버리스 호출을 위한 서비스 키 파일
+- /env/config.json
+
+```json
+{
+  "resource": {
+    "aesKey": "",
+    "aesIv": ""
+  },
+  "googleCloud": {
+    "initInfoURL": "",
+    "deeplearningServerURL": ""
+  }
+}
+```
+
+- /env/google_cloud_service_key.json
 
 ```json
 {

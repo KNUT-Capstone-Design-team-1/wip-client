@@ -7,7 +7,7 @@ export class GoogleAuthInstance {
 
   constructor() {
     this.googleAuth = new GoogleAuth({
-      keyFilename: path.join(__dirname, "../../google_cloud_service_key.json"),
+      keyFilename: path.join(__dirname, "../../env/google_cloud_service_key.json"),
     });
   }
 

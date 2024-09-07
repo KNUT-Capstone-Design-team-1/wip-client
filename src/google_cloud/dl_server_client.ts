@@ -1,5 +1,6 @@
 import { GoogleAuthInstance } from "./auth";
 import { IClient } from "../client.interface";
+import config from "../../env/config.json";
 
 type TDLServerResponse = {
   success: boolean;
@@ -7,12 +8,15 @@ type TDLServerResponse = {
   message?: string;
 };
 
-export class DLServerClient extends GoogleAuthInstance implements IClient<TDLServerResponse>  {
+export class DLServerClient
+  extends GoogleAuthInstance
+  implements IClient<TDLServerResponse>
+{
   private readonly serviceUrl: string;
 
   constructor() {
     super();
-    this.serviceUrl = process.env.DL_SERVER_URL as string;
+    this.serviceUrl = config.googleCloud.deeplearningServerURL;
   }
 
   public async request(base64: string) {
