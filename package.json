@@ -9,6 +9,7 @@
   "author": "2mukee",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.645.0",
     "dotenv": "^16.4.5",
     "google-auth-library": "^9.13.0",
     "open": "^10.1.0",
@@ -16,7 +17,6 @@
   },
   "devDependencies": {
     "@types/node": "^22.4.1",
-    "ts-node": "^10.9.2",
-    "wrangler": "^3.72.2"
+    "ts-node": "^10.9.2"
   }
 }

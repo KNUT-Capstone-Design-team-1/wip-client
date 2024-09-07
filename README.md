@@ -21,6 +21,13 @@ yarn start
   "googleCloud": {
     "initInfoURL": "",
     "deeplearningServerURL": ""
+  },
+  "cloudflare": {
+    "resourceDownloadURL": "",
+    "resourceBucket": "",
+    "tokenValue": "",
+    "accessKeyID": "",
+    "secretAccessKey": ""
   }
 }
 ```
