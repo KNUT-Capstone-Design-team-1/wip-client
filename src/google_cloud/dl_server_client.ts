@@ -20,13 +20,16 @@ export class DLServerClient
   }
 
   public async request(base64: string) {
-    const result = await axios.post<TDLServerResponse>(this.serviceUrl, {
-      data: { base64 },
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-        "Content-Type": "application/json",
-      },
-    });
+    const result = await axios.post<TDLServerResponse>(
+      this.serviceUrl,
+      { base64 },
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     return result.data;
   }
