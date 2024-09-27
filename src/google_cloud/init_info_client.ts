@@ -1,6 +1,6 @@
-import { GoogleAuthInstance } from "./auth";
+import axios from "axios";
 import { IClient } from "../client.interface";
-import config from "../../env/config.json";
+import { GoogleAuthInstance } from "./auth";
 
 type TInitInfoResponse = { appVersion: string; resourceDate: string };
 
@@ -12,15 +12,12 @@ export class InitInfoClient
 
   constructor() {
     super();
-    this.serviceUrl = config.googleCloud.initInfoURL;
+    this.serviceUrl = process.env.GOOGLE_CLOUD_INIT_INFO_URL as string;
   }
 
   public async request() {
-    const client = await this.getInstance().getIdTokenClient(this.serviceUrl);
-
-    const result = await client.request<TInitInfoResponse>({
-      url: this.serviceUrl,
-      method: "GET",
+    const result = await axios.get<TInitInfoResponse>(this.serviceUrl, {
+      headers: { Authorization: `Bearer ${this.token}` },
     });
 
     return result.data;

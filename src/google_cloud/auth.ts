@@ -1,17 +1,36 @@
-import { GoogleAuth } from "google-auth-library";
-import { JSONClient } from "google-auth-library/build/src/auth/googleauth";
-import path from "path";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import crypto from "crypto";
 
 export class GoogleAuthInstance {
-  private readonly googleAuth: GoogleAuth<JSONClient>;
+  protected readonly token: string;
 
   constructor() {
-    this.googleAuth = new GoogleAuth({
-      keyFilename: path.join(__dirname, "../../env/google_cloud_service_key.json"),
-    });
+    this.token = this.createToken();
   }
 
-  public getInstance() {
-    return this.googleAuth;
+  private createToken() {
+    const rsaPubKey = (process.env.GOOGLE_CLOUD_RSA_PUB_KEY as string).replace(
+      /\\n/g,
+      "\n"
+    );
+
+    dayjs.extend(utc);
+    const now = dayjs.utc().format();
+
+    return crypto
+      .publicEncrypt(`${rsaPubKey}`, Buffer.from(now))
+      .toString("base64");
   }
+
+  // deprecated
+  // constructor() {
+  //   this.googleAuth = new GoogleAuth({
+  //     keyFilename: path.join(__dirname, "../../env/google_cloud_service_key.json"),
+  //   });
+  // }
+
+  // public getInstance() {
+  //   return this.googleAuth;
+  // }
 }

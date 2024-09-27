@@ -2,7 +2,6 @@ import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { PassThrough, Stream } from "stream";
 import fs from "fs";
 import path from "path";
-import config from "../../env/config.json";
 
 export class ResourceDownloadClient {
   private readonly apiURL: string;
@@ -13,16 +12,16 @@ export class ResourceDownloadClient {
 
   constructor() {
     const {
-      resourceDownloadURL,
-      resourceBucket,
-      accessKeyID,
-      secretAccessKey,
-    } = config.cloudflare;
+      CLOUD_FLARE_RESOURCE_DOWNLOAD_URL,
+      CLOUD_FLARE_RESOURCE_BUCKET,
+      CLOUD_FLARE_ACCESS_KEY_ID,
+      CLOUD_FLARE_SECRET_ACCESS_KEY,
+    } = process.env;
 
-    this.apiURL = resourceDownloadURL;
-    this.bucket = resourceBucket;
-    this.accessKeyID = accessKeyID;
-    this.secretAccessKey = secretAccessKey;
+    this.apiURL = CLOUD_FLARE_RESOURCE_DOWNLOAD_URL as string;
+    this.bucket = CLOUD_FLARE_RESOURCE_BUCKET as string;
+    this.accessKeyID = CLOUD_FLARE_ACCESS_KEY_ID as string;
+    this.secretAccessKey = CLOUD_FLARE_SECRET_ACCESS_KEY as string;
     this.resourcePath = path.join(__dirname, `../../resources`);
   }
 

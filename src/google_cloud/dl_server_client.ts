@@ -1,6 +1,6 @@
-import { GoogleAuthInstance } from "./auth";
+import axios from "axios";
 import { IClient } from "../client.interface";
-import config from "../../env/config.json";
+import { GoogleAuthInstance } from "./auth";
 
 type TDLServerResponse = {
   success: boolean;
@@ -16,17 +16,16 @@ export class DLServerClient
 
   constructor() {
     super();
-    this.serviceUrl = config.googleCloud.deeplearningServerURL;
+    this.serviceUrl = process.env.GOOGLE_CLOUD_DL_SERVER_URL as string;
   }
 
   public async request(base64: string) {
-    const client = await this.getInstance().getIdTokenClient(this.serviceUrl);
-
-    const result = await client.request<TDLServerResponse>({
-      url: this.serviceUrl,
-      method: "POST",
+    const result = await axios.post<TDLServerResponse>(this.serviceUrl, {
       data: { base64 },
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+        "Content-Type": "application/json",
+      },
     });
 
     return result.data;
