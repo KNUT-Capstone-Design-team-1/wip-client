@@ -21,11 +21,7 @@ async function requestImageSearch(base64: string) {
 async function downloadResourceFiles() {
   const resourceDownloadClient = new ResourceDownloadClient();
 
-  await resourceDownloadClient.downloadAllResources("drug_recognition.zip");
-
-  await resourceDownloadClient.downloadAllResources(
-    "finished_medecine_permission_details.zip"
-  );
+  await resourceDownloadClient.downloadResource();
 }
 
 async function main() {

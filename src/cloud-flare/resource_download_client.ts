@@ -1,4 +1,8 @@
-import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import {
+  GetObjectCommand,
+  ListObjectsV2Command,
+  S3Client,
+} from "@aws-sdk/client-s3";
 import { PassThrough, Stream } from "stream";
 import fs from "fs";
 import path from "path";
@@ -25,15 +29,27 @@ export class ResourceDownloadClient {
     this.resourcePath = path.join(__dirname, `../../resources`);
   }
 
-  public async downloadAllResources(fileName: string) {
-    const command = new GetObjectCommand({
-      Bucket: this.bucket,
-      Key: fileName,
-    });
+  public async downloadResource() {
+    const resourceList = await this.getAllResourceList();
+
+    if (!resourceList?.length) {
+      console.log("resoure list is not exist in bucket");
+      return;
+    }
+
+    for await (const resource of resourceList) {
+      if (resource.Key) {
+        await this.downloadAllResources(resource.Key as string);
+      }
+    }
+  }
+
+  private async getAllResourceList() {
+    const command = new ListObjectsV2Command({ Bucket: this.bucket });
 
     const response = await this.getS3Client().send(command);
 
-    this.createFile(fileName, response.Body as Stream);
+    return response.Contents;
   }
 
   private getS3Client() {
@@ -45,6 +61,17 @@ export class ResourceDownloadClient {
         secretAccessKey: this.secretAccessKey,
       },
     });
+  }
+
+  private async downloadAllResources(fileName: string) {
+    const command = new GetObjectCommand({
+      Bucket: this.bucket,
+      Key: fileName,
+    });
+
+    const response = await this.getS3Client().send(command);
+
+    this.createFile(fileName, response.Body as Stream);
   }
 
   private createFile(fileName: string, streamData: Stream) {

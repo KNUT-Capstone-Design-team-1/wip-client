@@ -22,15 +22,4 @@ export class GoogleAuthInstance {
       .publicEncrypt(`${rsaPubKey}`, Buffer.from(now))
       .toString("base64");
   }
-
-  // deprecated
-  // constructor() {
-  //   this.googleAuth = new GoogleAuth({
-  //     keyFilename: path.join(__dirname, "../../env/google_cloud_service_key.json"),
-  //   });
-  // }
-
-  // public getInstance() {
-  //   return this.googleAuth;
-  // }
 }
