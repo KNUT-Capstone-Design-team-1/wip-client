@@ -53,12 +53,11 @@ async function main() {
 
   while (executeSeconds <= maxExecuteSeconds) {
     try {
-      executeSeconds = (new Date().getTime() - started.getTime()) / 1000;
-
-      console.log("[INFO] execute %s seconds...", executeSeconds);
-
       await callAPI();
       await delay(interval);
+
+      console.log("[INFO] execute %s seconds...", executeSeconds);
+      executeSeconds = (new Date().getTime() - started.getTime()) / 1000;
     } catch (e) {
       console.log("[ERROR] %s", (e as Error).message);
     }
