@@ -55,11 +55,11 @@ async function main() {
     try {
       await callAPI();
       await delay(interval);
-
-      console.log("[INFO] execute %s seconds...", executeSeconds);
-      executeSeconds = (new Date().getTime() - started.getTime()) / 1000;
     } catch (e) {
       console.log("[ERROR] %s", (e as Error).message);
+    } finally {
+      console.log("[INFO] execute %s seconds...", executeSeconds);
+      executeSeconds = (new Date().getTime() - started.getTime()) / 1000;
     }
   }
 }
