@@ -45,24 +45,22 @@ async function main() {
   const started = new Date();
 
   const maxExecuteSeconds =
-    parseInt(process.env.MAX_EXECUTE_MINUTE_API_CALL as string, 10) * 60; // min to sec
+    parseInt(process.env.MAX_API_CALL_MINUTE as string, 10) * 60; // min to sec
 
-  const interval = parseInt(process.env.INTERVAL_SECOND_API_CALL as string, 10);
+  const interval = parseInt(process.env.API_CALL_INTERVAL_SECOND as string, 10);
 
   let executeSeconds = 0;
 
   while (executeSeconds <= maxExecuteSeconds) {
     try {
-      executeSeconds = new Date(
-        new Date().getTime() - started.getTime()
-      ).getSeconds();
+      executeSeconds = (new Date().getTime() - started.getTime()) / 1000;
 
       console.log("[INFO] execute %s seconds...", executeSeconds);
 
       await callAPI();
       await delay(interval);
     } catch (e) {
-      console.log('[ERROR] %s', (e as Error).message);
+      console.log("[ERROR] %s", (e as Error).message);
     }
   }
 }
