@@ -71,10 +71,10 @@ export class ResourceDownloadClient {
 
     const response = await this.getS3Client().send(command);
 
-    this.createFile(fileName, response.Body as Stream);
+    await this.createFile(fileName, response.Body as Stream);
   }
 
-  private createFile(fileName: string, streamData: Stream) {
+  private async createFile(fileName: string, streamData: Stream) {
     if (!fs.existsSync(this.resourcePath)) {
       fs.mkdirSync(this.resourcePath);
     }

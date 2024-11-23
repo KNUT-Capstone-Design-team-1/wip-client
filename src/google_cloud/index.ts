@@ -1,15 +1,19 @@
 import { DLServerClient } from "./dl_server_client";
+import { DrugDetailClient } from "./drug_detail";
 import { InitInfoClient } from "./init_info_client";
 
-type TClientType = "init-info" | "dl-server-recognition";
+type TClientType = "initial-info" | "image-search" | "drug-detail";
 
 export function getClient(clientType: TClientType) {
   switch (clientType) {
-    case "init-info":
+    case "initial-info":
       return new InitInfoClient();
 
-    case "dl-server-recognition":
+    case "image-search":
       return new DLServerClient();
+
+    case "drug-detail":
+      return new DrugDetailClient();
 
     default:
       throw new Error(`invalid client type ${clientType}`);
