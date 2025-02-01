@@ -19,6 +19,8 @@ CLOUD_FLARE_RESOURCE_BUCKET="클라우드 플레어 리소스 버킷 이름"
 CLOUD_FLARE_TOKEN_VALUE="클라우드 플레어 R2 토큰"
 CLOUD_FLARE_ACCESS_KEY_ID="클라우드 플레어 R2 액세스 키 아이디"
 CLOUD_FLARE_SECRET_ACCESS_KEY="클라우드 플레어 R2 액세스 키"
+CLOUD_FLARE_WORKERS_API_URL="클라우드 플레어 서버리스 URL"
+CLOUD_FLARE_WORKERS_TOKEN="클라우드 플레어 서버리스 토큰"
 
 MAX_API_CALL_MINUTE="API를 반복적으로 호출하는 시간 (분)"
 API_CALL_INTERVAL_SECOND="API 호출 간격 (초)"

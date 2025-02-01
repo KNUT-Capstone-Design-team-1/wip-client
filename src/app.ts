@@ -4,6 +4,7 @@ import { InitInfoClient } from "./google_cloud/init_info_client";
 import { DLServerClient } from "./google_cloud/dl_server_client";
 import { ResourceDownloadClient } from "./cloud-flare/resource_download_client";
 import { DrugDetailClient } from "./google_cloud/drug_detail";
+import { NoticeClient } from "./cloud-flare/notice_client";
 
 async function getInitInfo() {
   const initInfoClient = ClientService.getClient(
@@ -35,6 +36,12 @@ async function downloadResourceFiles() {
   await resourceDownloadClient.downloadResource();
 }
 
+async function getNotices() {
+  const noticeClient = new NoticeClient();
+
+  return (await noticeClient.readNotices()).data;
+}
+
 async function callAPI() {
   // 애플리케이션 초기화 정보
   console.log(await getInitInfo());
@@ -49,6 +56,9 @@ async function callAPI() {
 
   // 리소스 다운로드
   await downloadResourceFiles();
+
+  // 공지사항 목록 조회
+  console.log(JSON.stringify(await getNotices()));
 }
 
 function delay(ms: number) {
