@@ -42,6 +42,16 @@ async function getNotices() {
   return (await noticeClient.readNotices()).data;
 }
 
+async function createNotice() {
+  const noticeClient = new NoticeClient();
+
+  return (await noticeClient.createNotice({
+    title: "wip-client-test",
+    contents: "클라이언트만 되면 끝",
+    mustRead: true,
+  })).data;
+}
+
 async function callAPI() {
   // 애플리케이션 초기화 정보
   console.log(await getInitInfo());
@@ -59,6 +69,9 @@ async function callAPI() {
 
   // 공지사항 목록 조회
   console.log(JSON.stringify(await getNotices()));
+
+  // 공지사항 생성 (반복 생성 주의)
+  // console.log(JSON.stringify(await createNotice()));
 }
 
 function delay(ms: number) {

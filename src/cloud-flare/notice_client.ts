@@ -45,7 +45,7 @@ export class NoticeClient {
   public async createNotice(
     payload: Pick<TNotice, "title" | "contents" | "mustRead">
   ) {
-    return this.axiosClient.post(`/notices`, payload, {
+    return this.axiosClient.post<"Created">(`/notices`, payload, {
       headers: { "Content-Type": "application/json" },
     });
   }
@@ -60,12 +60,12 @@ export class NoticeClient {
     idx: number,
     payload: Pick<TNotice, "title" | "contents" | "mustRead">
   ) {
-    return this.axiosClient.put(`/notices/${idx}`, payload, {
+    return this.axiosClient.put<"Success">(`/notices/${idx}`, payload, {
       headers: { "Content-Type": "application/json" },
     });
   }
 
   public async deleteNotice(idx: number) {
-    return this.axiosClient.delete(`/notices/${idx}`);
+    return this.axiosClient.delete<"Success">(`/notices/${idx}`);
   }
 }
