@@ -5,6 +5,7 @@ import { DLServerClient } from "./google_cloud/dl_server_client";
 import { ResourceDownloadClient } from "./cloud-flare/resource_download_client";
 import { DrugDetailClient } from "./google_cloud/drug_detail";
 import { NoticeClient } from "./cloud-flare/notice_client";
+import { NearbyPharmacyClient } from "./google_cloud/nearby_pharmacy_client";
 import config from "../config.json";
 
 async function getInitInfo() {
@@ -73,6 +74,14 @@ async function deleteNotice() {
   return (await noticeClient.deleteNotice(5)).data;
 }
 
+async function getNearbyPharmacy() {
+  const nearbyPharmacyClient = ClientService.getClient(
+    "nearby-pharmacy"
+  ) as NearbyPharmacyClient;
+
+  return await nearbyPharmacyClient.request();
+}
+
 async function callAPI() {
   const { apiList } = config;
 
@@ -109,6 +118,10 @@ async function callAPI() {
   if (apiList.includes("delete-notices-idx")) {
     console.log(JSON.stringify(await deleteNotice()));
   }
+
+  if (apiList.includes("get-nearby-pharmacy")) {
+    console.log(JSON.stringify(await getNearbyPharmacy()));
+  }
 }
 
 function delay(ms: number) {
@@ -121,26 +134,32 @@ async function main() {
   const maxExecuteSeconds =
     parseInt(process.env.MAX_API_CALL_MINUTE as string, 10) * 1000 * 60; // min
 
-  const interval = parseInt(process.env.API_CALL_INTERVAL_SECOND as string, 10) * 1000; // sec
+  const interval =
+    parseInt(process.env.API_CALL_INTERVAL_SECOND as string, 10) * 1000; // sec
 
   let executeSeconds = 0;
 
   const { apiList } = config;
 
   if (!apiList.some((v) => !/^_/.test(v))) {
-    console.log("[CALL-API] No API list. check config.json. delete \"_\" at apiList element");
+    console.log(
+      '[CALL-API] No API list. check config.json. delete "_" at apiList element'
+    );
     return;
   }
 
   while (executeSeconds <= maxExecuteSeconds) {
     try {
       await callAPI();
-      console.log("[MAIN] execute %s seconds...", Math.floor(executeSeconds / 1000));
-      await delay(interval);
+      console.log(
+        "[MAIN] execute %s seconds...",
+        Math.floor(executeSeconds / 1000)
+      );
     } catch (e) {
       console.log("[MAIN] error. %s", (e as Error).stack);
     } finally {
-      executeSeconds = (new Date().getTime() - started.getTime());
+      executeSeconds = new Date().getTime() - started.getTime();
+      await delay(interval);
     }
   }
 }
