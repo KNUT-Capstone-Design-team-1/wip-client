@@ -33,7 +33,7 @@ export class ResourceDownloadClient {
     const resourceList = await this.getAllResourceList();
 
     if (!resourceList?.length) {
-      console.log("resoure list is not exist in bucket");
+      console.log("[DOWNLOAD-RESOURCE] resoure list is not exist in bucket");
       return;
     }
 
@@ -88,11 +88,11 @@ export class ResourceDownloadClient {
     streamData.pipe(passThroughStream).pipe(fileStream);
 
     fileStream.on("finish", () => {
-      console.log("File downloaded successfully!");
+      console.log("[CREATE-FILE] File downloaded successfully!");
     });
 
     fileStream.on("error", (err) => {
-      console.error("Error downloading file:", err);
+      console.log("[CREATE-FILE] Error downloading file:", err);
     });
   }
 }

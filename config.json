@@ -1,0 +1,12 @@
+{
+  "apiList": [
+    "_get-initial-info",
+    "_get-image-search",
+    "_get-drug-detail",
+    "_get-wip-resource",
+    "_get-notices",
+    "_post-notices",
+    "_put-notices-idx",
+    "_delete-notices-idx"
+  ]
+}
