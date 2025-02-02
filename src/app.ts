@@ -70,16 +70,11 @@ async function updateNotice() {
 async function deleteNotice() {
   const noticeClient = new NoticeClient();
 
-  return (await noticeClient.deleteNotice(4)).data;
+  return (await noticeClient.deleteNotice(5)).data;
 }
 
 async function callAPI() {
   const { apiList } = config;
-
-  if (!apiList?.length) {
-    console.log("[CALL-API] No API list. check config.json. delete \"_\" at apiList");
-    return;
-  }
 
   if (apiList.includes("get-initial-info")) {
     console.log(await getInitInfo());
@@ -124,21 +119,28 @@ async function main() {
   const started = new Date();
 
   const maxExecuteSeconds =
-    parseInt(process.env.MAX_API_CALL_MINUTE as string, 10) * 60; // min to sec
+    parseInt(process.env.MAX_API_CALL_MINUTE as string, 10) * 1000 * 60; // min
 
-  const interval = parseInt(process.env.API_CALL_INTERVAL_SECOND as string, 10);
+  const interval = parseInt(process.env.API_CALL_INTERVAL_SECOND as string, 10) * 1000; // sec
 
   let executeSeconds = 0;
+
+  const { apiList } = config;
+
+  if (!apiList.some((v) => !/^_/.test(v))) {
+    console.log("[CALL-API] No API list. check config.json. delete \"_\" at apiList element");
+    return;
+  }
 
   while (executeSeconds <= maxExecuteSeconds) {
     try {
       await callAPI();
+      console.log("[MAIN] execute %s seconds...", Math.floor(executeSeconds / 1000));
       await delay(interval);
     } catch (e) {
       console.log("[MAIN] error. %s", (e as Error).stack);
     } finally {
-      console.log("[MAIN] execute %s seconds...", executeSeconds);
-      executeSeconds = (new Date().getTime() - started.getTime()) / 1000;
+      executeSeconds = (new Date().getTime() - started.getTime());
     }
   }
 }
