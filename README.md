@@ -25,3 +25,6 @@ CLOUD_FLARE_WORKERS_TOKEN="클라우드 플레어 서버리스 토큰"
 MAX_API_CALL_MINUTE="API를 반복적으로 호출하는 시간 (분)"
 API_CALL_INTERVAL_SECOND="API 호출 간격 (초)"
 ```
+
+- config.json
+  - apiList에 실행할 API의 이름에서 "_" 제거 후 실행
