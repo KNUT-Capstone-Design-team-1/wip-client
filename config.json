@@ -9,8 +9,9 @@
     "_put-notices-idx",
     "_delete-notices-idx",
     "_get-nearby-pharmacy",
-    "_mark-image"
+    "mark-image"
   ],
   "page": 1,
-  "limit": 9
+  "limit": 9,
+  "title": "_마크이미지 검색 시 마크 이미지 제목 필터링"
 }

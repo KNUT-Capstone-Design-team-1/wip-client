@@ -83,16 +83,16 @@ async function getNearbyPharmacy() {
   return await nearbyPharmacyClient.request();
 }
 
-async function getMarkImage(page: number, limit: number) {
+async function getMarkImage(page: number, limit: number, title?: string) {
   const markImageClient = ClientService.getClient(
     "mark-image"
   ) as MarkImageClient;
 
-  return await markImageClient.request(page, limit);
+  return await markImageClient.request(page, limit, title);
 }
 
 async function callAPI() {
-  const { apiList, page, limit } = config;
+  const { apiList, page, limit, title } = config;
 
   if (apiList.includes("get-initial-info")) {
     console.log(await getInitInfo());
@@ -133,7 +133,7 @@ async function callAPI() {
   }
 
   if (apiList.includes("mark-image")) {
-    console.log(JSON.stringify(await getMarkImage(page, limit)));
+    console.log(JSON.stringify(await getMarkImage(page, limit, title)));
   }
 }
 

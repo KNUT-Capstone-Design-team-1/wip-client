@@ -21,11 +21,12 @@ export class MarkImageClient
     this.serviceUrl = process.env.GOOGLE_CLOUD_MARK_IMAGE_URL as string;
   }
 
-  public async request(page: number, limit: number) {
+  public async request(page: number, limit: number, title?: string) {
     const result = await axios.get<TMarkImageData>(this.serviceUrl, {
       params: {
         page,
         limit,
+        title,
       },
       headers: { Authorization: `Bearer ${this.token}` },
     });
