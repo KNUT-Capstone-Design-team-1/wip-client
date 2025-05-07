@@ -1,9 +1,10 @@
 import { DLServerClient } from "./dl_server_client";
 import { DrugDetailClient } from "./drug_detail";
 import { InitInfoClient } from "./init_info_client";
+import { MarkImageClient } from "./mark_image_client";
 import { NearbyPharmacyClient } from "./nearby_pharmacy_client";
 
-type TClientType = "initial-info" | "image-search" | "drug-detail" | "nearby-pharmacy";
+type TClientType = "initial-info" | "image-search" | "drug-detail" | "nearby-pharmacy" | "mark-image";
 
 export function getClient(clientType: TClientType) {
   switch (clientType) {
@@ -18,6 +19,9 @@ export function getClient(clientType: TClientType) {
 
     case "nearby-pharmacy":
       return new NearbyPharmacyClient();
+
+    case "mark-image":
+      return new MarkImageClient();
 
     default:
       throw new Error(`invalid client type ${clientType}`);

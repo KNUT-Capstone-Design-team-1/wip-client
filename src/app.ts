@@ -7,6 +7,7 @@ import { DrugDetailClient } from "./google_cloud/drug_detail";
 import { NoticeClient } from "./cloud-flare/notice_client";
 import { NearbyPharmacyClient } from "./google_cloud/nearby_pharmacy_client";
 import config from "../config.json";
+import { MarkImageClient } from "./google_cloud/mark_image_client";
 
 async function getInitInfo() {
   const initInfoClient = ClientService.getClient(
@@ -82,8 +83,16 @@ async function getNearbyPharmacy() {
   return await nearbyPharmacyClient.request();
 }
 
+async function getMarkImage(page: number, limit: number) {
+  const markImageClient = ClientService.getClient(
+    "mark-image"
+  ) as MarkImageClient;
+
+  return await markImageClient.request(page, limit);
+}
+
 async function callAPI() {
-  const { apiList } = config;
+  const { apiList, page, limit } = config;
 
   if (apiList.includes("get-initial-info")) {
     console.log(await getInitInfo());
@@ -121,6 +130,10 @@ async function callAPI() {
 
   if (apiList.includes("get-nearby-pharmacy")) {
     console.log(JSON.stringify(await getNearbyPharmacy()));
+  }
+
+  if (apiList.includes("mark-image")) {
+    console.log(JSON.stringify(await getMarkImage(page, limit)));
   }
 }
 

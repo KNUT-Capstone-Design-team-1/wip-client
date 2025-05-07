@@ -8,6 +8,9 @@
     "_post-notices",
     "_put-notices-idx",
     "_delete-notices-idx",
-    "_get-nearby-pharmacy"
-  ]
+    "_get-nearby-pharmacy",
+    "_mark-image"
+  ],
+  "page": 1,
+  "limit": 9
 }

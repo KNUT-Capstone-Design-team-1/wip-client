@@ -13,6 +13,8 @@ GOOGLE_CLOUD_RSA_PUB_KEY="구글 클라우드 플랫폼 서버리스 토큰 암�
 GOOGLE_CLOUD_INIT_INFO_URL="구글 클라우드 플랫폼 init-info API URL"
 GOOGLE_CLOUD_DL_SERVER_URL="구글 클라우드 플랫폼 image-search API URL"
 GOOGLE_CLOUD_DRUG_DETAIL_URL="구글 클라우드 플랫폼 drug-detail API URL"
+GOOGLE_CLOUD_NEARBY_PHARMACY_URL="구글 클라우드 플랫폼 nearby-pharmacy API URL"
+GOOGLE_CLOUD_MARK_IMAGE_URL="구글 클라우드 플랫폼 mark-image API URL"
 
 CLOUD_FLARE_RESOURCE_DOWNLOAD_URL="클라우드 플레어 리소스 스토리지 URL"
 CLOUD_FLARE_RESOURCE_BUCKET="클라우드 플레어 리소스 버킷 이름"
