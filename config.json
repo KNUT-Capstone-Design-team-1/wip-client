@@ -2,6 +2,7 @@
   "apiList": [
     "_get-initial-info",
     "_get-image-search",
+    "_get-image-search-v2",
     "_get-drug-detail",
     "_get-wip-resource",
     "_get-notices",
@@ -9,7 +10,7 @@
     "_put-notices-idx",
     "_delete-notices-idx",
     "_get-nearby-pharmacy",
-    "mark-image"
+    "_mark-image"
   ],
   "page": 1,
   "limit": 9,
