@@ -1,13 +1,11 @@
 # wip-client
+
 - 이게뭐약 프로젝트 서버리스 계획에 따라 애플리케이션 담당자가 참조할 수 있고록 개발한 서버리스 클라이언트
 
-# Execution
-```bash
-yarn start
-```
-
 # Requirement
+
 - .env
+
 ```bash
 GOOGLE_CLOUD_RSA_PUB_KEY="구글 클라우드 플랫폼 서버리스 토큰 암호화 키"
 GOOGLE_CLOUD_INIT_INFO_URL="구글 클라우드 플랫폼 init-info API URL"
@@ -29,4 +27,13 @@ API_CALL_INTERVAL_SECOND="API 호출 간격 (초)"
 ```
 
 - config.json
-  - apiList에 실행할 API의 이름에서 "_" 제거 후 실행
+  - apiList에 실행할 API의 이름에서 "\_" 제거 후 실행
+
+# Execution
+
+1. .env 구성
+2. 실행
+
+```bash
+yarn start
+```
