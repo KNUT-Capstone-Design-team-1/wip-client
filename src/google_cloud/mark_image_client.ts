@@ -7,7 +7,11 @@ type TMarkImageData = {
   totalPage: number; // 총 페이지
   page: number; // 현재 페이지
   limit: number; // 현재 페이지당 개수
-  data: { code: string; base64: string }[]; // 데이터
+  data: {
+    title: string; // 마크 이름
+    code: string; // 마크 코드
+    base64: string; // 마크 이미지
+  }[]; // 데이터
 };
 
 export class MarkImageClient
