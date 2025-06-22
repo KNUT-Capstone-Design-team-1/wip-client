@@ -31,8 +31,34 @@ API_CALL_INTERVAL_SECOND="API 호출 간격 (초)"
 
 # Execution
 
-1. .env 구성
-2. 실행
+1. `.env` 구성
+2. `config.json` 파일 수정
+
+- apiList에서 실행할 API의 `_` 문자 제거
+
+```json
+{
+  // API 목록
+  "apiList": [
+    "_get-initial-info", // 초기화 정보
+    "_get-image-search", // 이미지 검색 v1 (구 파이썬 서버)
+    "_get-image-search-v2", // 이미지 검색 v2 (신 제미나이 서버)
+    "_get-drug-detail", // 알약 상세 정보
+    "_get-wip-resource", // 알약 정보 데이터 베이스 리소스 다운로드
+    "_get-notices", // 공지사항 조회
+    "_post-notices", // 공지사항 등록
+    "_put-notices-idx", // 공지사항 수정
+    "_delete-notices-idx", // 공지사항 삭제
+    "_get-nearby-pharmacy", // 주변 약국
+    "_mark-image" // 마크 이미지
+  ],
+  "page": 1, // 마크 이미지 검색 시 페이지 (최소 1)
+  "limit": 9, // 마크 이미지 검색 시 limit (최대 50)
+  "title": "_마크 이미지 검색 시 마크 이미지 제목 필터링" // 마크이미지 검색 시 제목
+}
+```
+
+3. 실행
 
 ```bash
 yarn start
