@@ -12,7 +12,17 @@
     "_get-nearby-pharmacy",
     "_mark-image"
   ],
-  "page": 1,
-  "limit": 9,
-  "title": "_마크 이미지 검색 시 마크 이미지 제목 필터링"
+  "markImage": {
+    "page": 1,
+    "limit": 9,
+    "title": ""
+  },
+  "nearbyPharmacy": {
+    "x": 127.1282197,
+    "y": 37.4105955,
+    "states": "",
+    "region": "",
+    "district": "",
+    "address": ""
+  }
 }

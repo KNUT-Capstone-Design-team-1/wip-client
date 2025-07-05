@@ -29,10 +29,10 @@ export class NoticeClient {
   private readonly axiosClient: Axios;
 
   constructor() {
-    const { CLOUD_FLARE_WORKERS_API_URL, CLOUD_FLARE_WORKERS_TOKEN } =
+    const { CLOUD_FLARE_WORKERS_NOTICES_API_URL, CLOUD_FLARE_WORKERS_TOKEN } =
       process.env;
 
-    this.apiURL = CLOUD_FLARE_WORKERS_API_URL as string;
+    this.apiURL = CLOUD_FLARE_WORKERS_NOTICES_API_URL as string;
     this.token = CLOUD_FLARE_WORKERS_TOKEN as string;
     this.axiosClient = axios.create({
       baseURL: this.apiURL,
