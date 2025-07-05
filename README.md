@@ -50,7 +50,7 @@ API_CALL_INTERVAL_SECOND="API 호출 간격 (초)"
     "_post-notices", // 공지사항 등록
     "_put-notices-idx", // 공지사항 수정
     "_delete-notices-idx", // 공지사항 삭제
-    "_get-nearby-pharmacy", // 주변 약국
+    "_get-nearby-pharmacies", // 주변 약국
     "_mark-image" // 마크 이미지
   ],
   "markImage": {

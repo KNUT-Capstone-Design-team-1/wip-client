@@ -154,7 +154,7 @@ async function callAPI() {
     console.log(JSON.stringify(await deleteNotice()));
   }
 
-  if (apiList.includes("get-nearby-pharmacy")) {
+  if (apiList.includes("get-nearby-pharmacies")) {
     const params = _.pickBy(
       config.nearbyPharmacy,
       (value) => !_.isNil(value) && value !== ""
