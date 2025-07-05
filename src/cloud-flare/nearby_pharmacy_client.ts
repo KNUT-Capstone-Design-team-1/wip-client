@@ -50,8 +50,8 @@ export class NearbyPharmacyClient {
   }
 
   public async readNearbyPharmacies(params: Partial<Pick<TNearbyPharmacy, 'states' | 'region' | 'district' | 'address' | 'x' | 'y'>>) {
-    return this.axiosClient.get<TNearbyPharmacyList>(`/nearby-pharmacies`, {
+    return (await this.axiosClient.get<TNearbyPharmacyList>(`/nearby-pharmacies`, {
       params,
-    });
+    })).data;
   }
 }
