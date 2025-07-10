@@ -2,7 +2,7 @@ import axios from "axios";
 import { IClient } from "../client.interface";
 import { GoogleAuthInstance } from "./auth";
 
-type TInitInfoResponse = { appVersion: string; resourceDate: string };
+type TInitInfoResponse = { playStoreVersion: string; appStoreVersion: string; resourceDate: string };
 
 export class InitInfoClient
   extends GoogleAuthInstance
