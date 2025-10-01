@@ -26,7 +26,7 @@ export class GeminiImageSearchClient
         headers: {
           Authorization: `Bearer ${this.token}`,
           "Content-Type": "application/json",
-          apiVersion: 2
+          apiversion: 2
         },
       });
 
