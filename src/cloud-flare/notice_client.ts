@@ -10,17 +10,8 @@ type TNotice = {
 
 type TNoticeList = Array<{
   success: boolean;
-  meta: {
-    served_by: string;
-    duration: number;
-    changes: number;
-    last_row_id: number;
-    changed_db: boolean;
-    size_after: number;
-    rows_read: number;
-    rows_written: number;
-  };
-  results: Array<TNotice>;
+  notices: Array<TNotice>;
+  total: number;
 }>;
 
 export class NoticeClient {
